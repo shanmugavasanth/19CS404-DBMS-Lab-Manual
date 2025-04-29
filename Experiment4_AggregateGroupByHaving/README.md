@@ -161,6 +161,7 @@ having min(category_id) <3
 ![image](https://github.com/user-attachments/assets/515d3e40-2ce6-4fe5-b5de-7cc3dc682703)
 
 **Question 9**
+
 ![image](https://github.com/user-attachments/assets/ee6a52f4-a510-4943-892c-6d0168528226)
 
 
@@ -175,6 +176,7 @@ where unit ='LB'
 ![image](https://github.com/user-attachments/assets/6ddad507-e581-4d5d-9f85-e025a18f06e5)
 
 **Question 10**
+
 ![image](https://github.com/user-attachments/assets/87f3ec7c-5a83-4743-aa4f-1a02b2cd006d)
 
 
