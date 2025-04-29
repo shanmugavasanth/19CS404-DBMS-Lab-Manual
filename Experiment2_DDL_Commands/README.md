@@ -1,283 +1,219 @@
-# Experiment 2: DDL Commands
+# Experiment 3: DML Commands
 
 ## AIM
-To study and implement DDL commands and different types of constraints.
+To study and implement DML (Data Manipulation Language) commands.
 
 ## THEORY
 
-### 1. CREATE
-Used to create a new relation (table).
-
+### 1. INSERT INTO
+Used to add records into a relation.
+These are three type of INSERT INTO queries which are as
+A)Inserting a single record
+**Syntax (Single Row):**
+```sql
+INSERT INTO table_name (field_1, field_2, ...) VALUES (value_1, value_2, ...);
+```
+**Syntax (Multiple Rows):**
+```sql
+INSERT INTO table_name (field_1, field_2, ...) VALUES
+(value_1, value_2, ...),
+(value_3, value_4, ...);
+```
+**Syntax (Insert from another table):**
+```sql
+INSERT INTO table_name SELECT * FROM other_table WHERE condition;
+```
+### 2. UPDATE
+Used to modify records in a relation.
+Syntax:
+```sql
+UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
+```
+### 3. DELETE
+Used to delete records from a relation.
+**Syntax (All rows):**
+```sql
+DELETE FROM table_name;
+```
+**Syntax (Specific condition):**
+```sql
+DELETE FROM table_name WHERE condition;
+```
+### 4. SELECT
+Used to retrieve records from a table.
 **Syntax:**
 ```sql
-CREATE TABLE (
-  field_1 data_type(size),
-  field_2 data_type(size),
-  ...
-);
+SELECT column1, column2 FROM table_name WHERE condition;
 ```
-### 2. ALTER
-Used to add, modify, drop, or rename fields in an existing relation.
-(a) ADD
-```sql
-ALTER TABLE std ADD (Address CHAR(10));
-```
-(b) MODIFY
-```sql
-ALTER TABLE relation_name MODIFY (field_1 new_data_type(size));
-```
-(c) DROP
-```sql
-ALTER TABLE relation_name DROP COLUMN field_name;
-```
-(d) RENAME
-```sql
-ALTER TABLE relation_name RENAME COLUMN old_field_name TO new_field_name;
-```
-### 3. DROP TABLE
-Used to permanently delete the structure and data of a table.
-```sql
-DROP TABLE relation_name;
-```
-### 4. RENAME
-Used to rename an existing database object.
-```sql
-RENAME TABLE old_relation_name TO new_relation_name;
-```
-### CONSTRAINTS
-Constraints are used to specify rules for the data in a table. If there is any violation between the constraint and the data action, the action is aborted by the constraint. It can be specified when the table is created (using CREATE TABLE) or after it is created (using ALTER TABLE).
-### 1. NOT NULL
-When a column is defined as NOT NULL, it becomes mandatory to enter a value in that column.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) NOT NULL
-);
-```
-### 2. UNIQUE
-Ensures that values in a column are unique.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) UNIQUE
-);
-```
-### 3. CHECK
-Specifies a condition that each row must satisfy.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) CHECK (logical_expression)
-);
-```
-### 4. PRIMARY KEY
-Used to uniquely identify each record in a table.
-Properties:
-Must contain unique values.
-Cannot be null.
-Should contain minimal fields.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size) PRIMARY KEY
-);
-```
-### 5. FOREIGN KEY
-Used to reference the primary key of another table.
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  column_name data_type(size),
-  FOREIGN KEY (column_name) REFERENCES other_table(column)
-);
-```
-### 6. DEFAULT
-Used to insert a default value into a column if no value is specified.
-
-Syntax:
-```sql
-CREATE TABLE Table_Name (
-  col_name1 data_type,
-  col_name2 data_type,
-  col_name3 data_type DEFAULT 'default_value'
-);
-```
-
 **Question 1**
+--
+-- ![Screenshot 2025-04-29 121653](https://github.com/user-attachments/assets/53b5f3b9-c9b6-4e2b-a010-2876d7e71d58)
+-- ![Screenshot 2025-04-29 121523](https://github.com/user-attachments/assets/6218b66c-b292-4f15-9f78-d07da1e45385)
 
-![438551416-1ff73ec5-f6a1-4e70-9010-161c6f3772f6](https://github.com/user-attachments/assets/c1464946-e338-4482-a37a-9e974707c8d0)
 
 
 ```sql
-INSERT INTO Employee(EmployeeID,Name,Position)
-values(5,           'George Clark',  'Consultant');
-
-INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
-values(7,           'Noah Davis',    'Manager',     'HR',          60000);
-
-INSERT INTO Employee(EmployeeID,Name,Position,Department)
-values(8,           'Ava Miller',    'Consultant',  'IT');
+-- INSERT INTO Customers(CustomerID  ,Name,             Address,         Email)
+SELECT CustomerID  ,Name             ,Address         ,Email FROM Old_customers;
 ```
-
+```sql
+-- INSERT INTO Customers(CustomerID ,Name,Address, City     ,   ZipCode)VALUES (301, "Michael Jordan",  "123 Maple St",  "Chicago",  60616);
+```
 **Output:**
 
-![Screenshot 2025-04-29 135905](https://github.com/user-attachments/assets/f09cfe13-4c32-4525-88b5-200cc62db38c)
+![Screenshot 2025-04-29 121659](https://github.com/user-attachments/assets/8cb31551-6831-454d-b418-edd48d7eb67f)
+![Screenshot 2025-04-29 121536](https://github.com/user-attachments/assets/c63a44bb-a3d1-41fb-bac6-878256b773b3)
 
 
 **Question 2**
-
-![Screenshot 2025-04-29 135957](https://github.com/user-attachments/assets/89362ef2-7347-4a99-aa1c-7021ecc12fc0)
+---
+-- ![Screenshot 2025-04-29 123037](https://github.com/user-attachments/assets/1f0eb809-77c1-44ef-afa2-8421dcb11740)
 
 
 ```sql
-CREATE TABLE Attendance (  
-    AttendanceID INTEGER PRIMARY KEY,  
-    EmployeeID INTEGER,  
-    AttendanceDate DATE,  
-    Status TEXT CHECK (Status IN ('Present', 'Absent', 'Leave')),  
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)  
-);
+-- UPDATE products
+SET product_name = 'Grapefruit'
+WHERE product_id =4;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 140044](https://github.com/user-attachments/assets/ea7d306d-ccae-4760-b795-fd6d95471246)
+![Screenshot 2025-04-29 123046](https://github.com/user-attachments/assets/fac16b56-8a39-4f79-85ce-bbb4c7e859c6)
+
 
 **Question 3**
-
-![Screenshot 2025-04-29 140105](https://github.com/user-attachments/assets/c356bc6b-95e8-4e1a-ab15-993de8bfb0e7)
+---
+--![Screenshot 2025-04-29 123317](https://github.com/user-attachments/assets/777ae485-23f4-4483-8715-29b910b9a718)
 
 
 ```sql
-ALTER TABLE Employees
-ADD COLUMN Date_of_joining Date;
-
-ALTER TABLE Employees
-RENAME COLUMN job_title To Designation;
+-- DELETE FROM surgeries
+WHERE  surgery_id =3;
 ```
 
 **Output:**
+![Screenshot 2025-04-29 123327](https://github.com/user-attachments/assets/ed8e9b00-3bf7-4fff-8b31-4e8298e55694)
 
-![Screenshot 2025-04-29 140140](https://github.com/user-attachments/assets/540a0cd5-1c58-44a6-b5d1-461c2f1d3061)
 
 **Question 4**
+---
+-- ![Screenshot 2025-04-29 123951](https://github.com/user-attachments/assets/fbbc9c48-b733-4c6e-881c-da2102440159)
 
-![Screenshot 2025-04-29 140203](https://github.com/user-attachments/assets/835d84fe-f0d1-47e9-8237-21adedcb9ef8)
 
 ```sql
- CREATE TABLE jobs (  
-    job_id INTEGER PRIMARY KEY,  
-    job_title TEXT NOT NULL DEFAULT '',  
-    min_salary INTEGER NOT NULL DEFAULT 8000,  
-    max_salary INTEGER DEFAULT NULL  
-);
+-- SELECT customer_id, cust_name, city, grade, salesman_id
+FROM  customer
+WHERE  grade >100;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 140239](https://github.com/user-attachments/assets/5b8aa32d-a4d8-4031-9fbb-8245826c8c15)
+![Screenshot 2025-04-29 124001](https://github.com/user-attachments/assets/57d14ec4-855c-4b61-8374-1114b9dec239)
+
 
 **Question 5**
-
-![Screenshot 2025-04-29 140257](https://github.com/user-attachments/assets/16ca9945-2244-4155-98c0-e372f37d5549)
+---
+-- ![Screenshot 2025-04-29 134956](https://github.com/user-attachments/assets/2e173acd-15a6-4d60-b8b9-c4b039481a65)
 
 
 ```sql
-CREATE TABLE Departments(
-DepartmentID INTEGER,
-DepartmentName TEXT
-);
+-- SELECT ename,hiredate,DATE(hiredate ,'+100 Days') AS DateAfter100Days
+FROM emp;
 ```
 
 **Output:**
+![Screenshot 2025-04-29 135004](https://github.com/user-attachments/assets/5a348d18-aeeb-4137-9a5a-e08c5c24223c)
 
-![Screenshot 2025-04-29 140326](https://github.com/user-attachments/assets/029c84ce-53fa-44e5-bb01-265bbb42c218)
+
 
 **Question 6**
-
-![Screenshot 2025-04-29 140343](https://github.com/user-attachments/assets/4dfff7cf-c343-49db-a90e-50b9887375b3)
+---
+-- ![Screenshot 2025-04-29 135215](https://github.com/user-attachments/assets/88829371-d33e-4cd0-a174-a0926e8eabb6)
 
 
 ```sql
-select *from Out_of_print_books
-union all
-select *from Books
+-- SELECT id,ROUND(decimal,3) AS  rounded_value
+FROM Calculations;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 140412](https://github.com/user-attachments/assets/ef84a6de-e751-4f35-9ca6-47f67bb25f98)
+![Screenshot 2025-04-29 135222](https://github.com/user-attachments/assets/5f5b5228-2fed-4803-87d2-9897b3db8567)
+
 
 **Question 7**
-
-![Screenshot 2025-04-29 140429](https://github.com/user-attachments/assets/91973c99-84ed-4c37-b54d-80aa249be42a)
+---
+-- ![Screenshot 2025-04-29 135350](https://github.com/user-attachments/assets/1e205fbe-54c1-4a8a-a2af-1a9123217ee9)
 
 
 ```sql
-CREATE TABLE item (  
-    item_id TEXT PRIMARY KEY,  
-    item_desc TEXT NOT NULL,  
-    rate INTEGER NOT NULL,  
-    icom_id TEXT CHECK(4),  
-    FOREIGN KEY (icom_id) REFERENCES company(com_id)  
-    ON UPDATE CASCADE  
-    ON DELETE CASCADE  
-);
+-- DELETE FROM Customer
+WHERE LENGTH(CUST_NAME) =6;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 140458](https://github.com/user-attachments/assets/6bd2fef6-e71f-44d2-942f-18d6f69a3c32)
+![Screenshot 2025-04-29 135415](https://github.com/user-attachments/assets/2a0b7aa7-d093-4b51-99e0-c95da4a2114d)
+
 
 **Question 8**
-
-![Screenshot 2025-04-29 140518](https://github.com/user-attachments/assets/64410896-26df-4cd7-8ea8-5b2c3597619a)
+---
+-- ![Screenshot 2025-04-29 135607](https://github.com/user-attachments/assets/576f2b96-fb2f-41c3-a9d9-6de324daedaf)
 
 
 ```sql
-ALTER TABLE employee
-ADD COLUMN designation varchar(50);
+-- UPDATE Employees 
+SET salary = 8000
+WHERE employee_id =105 AND salary < 5000;
 ```
 
 **Output:**
+![Screenshot 2025-04-29 135613](https://github.com/user-attachments/assets/28d12da8-8149-4782-8582-03b0f1ed09d9)
 
-![Screenshot 2025-04-29 140542](https://github.com/user-attachments/assets/24b23b95-201e-4b61-9bc7-488b29aaa32f)
+
 
 **Question 9**
-
-![Screenshot 2025-04-29 140600](https://github.com/user-attachments/assets/b0d4226a-12ac-4680-ace3-50a728b10b23)
+---
+--![Screenshot 2025-04-29 135759](https://github.com/user-attachments/assets/d6e7d168-f8bb-4156-9070-fee806976f26)
 
 
 ```sql
-INSERT INTO Products (ProductID, Name, Category)  
-VALUES (104, 'Tablet', 'Electronics');
+-- SELECT id, value1, 
+        CASE 
+           WHEN  value1 >50 THEN 'High'
+           ELSE 'Low'
+        END AS  value_category
+FROM Calculations;
+
 ```
 
 **Output:**
+![Screenshot 2025-04-29 135803](https://github.com/user-attachments/assets/9ae7a5e9-2bfd-48f3-a187-40c6d38e38c8)
 
-![Screenshot 2025-04-29 140627](https://github.com/user-attachments/assets/3deaf30b-c9fc-4c55-9e06-1df30e22f006)
+
 
 **Question 10**
-
-![Screenshot 2025-04-29 140646](https://github.com/user-attachments/assets/d9f81474-362b-46a5-8aad-c574d2a73add)
+---
+-- ![Screenshot 2025-04-29 135949](https://github.com/user-attachments/assets/fe30c891-ce3e-47c4-9f5d-35b8ea958056)
 
 
 ```sql
-CREATE TABLE Employees(
-EmployeeID INTEGER primary key,
-FirstName INTEGER NOT NULL,
-LastName INTEGER NOT NULL,
-Email VARCHAR(50) unique,
-Salary CHECK (Salary>0),
-DepartmentID INTEGER,
-foreign key(DepartmentID) references Departments(DepartmentID)
-);
+-- SELECT 
+    product_id, 
+    original_price, 
+    discount_percentage,
+    original_price *discount_percentage AS discount_amount
+FROM 
+    products
+WHERE  
+    original_price * discount_percentage >50;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 140715](https://github.com/user-attachments/assets/09ac0268-5a30-4a0c-813b-c381b28b1dd6)
+![Screenshot 2025-04-29 135954](https://github.com/user-attachments/assets/30bfdccc-5cf0-49cd-82fd-353e4e03c637)
+
 
 
 ## RESULT
-Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+Thus, the SQL queries to implement DML commands have been executed successfully.
