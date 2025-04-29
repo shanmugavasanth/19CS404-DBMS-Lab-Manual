@@ -104,124 +104,179 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+
+![438551416-1ff73ec5-f6a1-4e70-9010-161c6f3772f6](https://github.com/user-attachments/assets/c1464946-e338-4482-a37a-9e974707c8d0)
+
 
 ```sql
--- Paste your SQL code below for Question 1
+INSERT INTO Employee(EmployeeID,Name,Position)
+values(5,           'George Clark',  'Consultant');
+
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
+values(7,           'Noah Davis',    'Manager',     'HR',          60000);
+
+INSERT INTO Employee(EmployeeID,Name,Position,Department)
+values(8,           'Ava Miller',    'Consultant',  'IT');
 ```
 
 **Output:**
 
-![Output1](output.png)
+![Screenshot 2025-04-29 135905](https://github.com/user-attachments/assets/f09cfe13-4c32-4525-88b5-200cc62db38c)
+
 
 **Question 2**
----
--- Paste Question 2 here
+
+![Screenshot 2025-04-29 135957](https://github.com/user-attachments/assets/89362ef2-7347-4a99-aa1c-7021ecc12fc0)
+
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Attendance (  
+    AttendanceID INTEGER PRIMARY KEY,  
+    EmployeeID INTEGER,  
+    AttendanceDate DATE,  
+    Status TEXT CHECK (Status IN ('Present', 'Absent', 'Leave')),  
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)  
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+![Screenshot 2025-04-29 140044](https://github.com/user-attachments/assets/ea7d306d-ccae-4760-b795-fd6d95471246)
 
 **Question 3**
----
--- Paste Question 3 here
+
+![Screenshot 2025-04-29 140105](https://github.com/user-attachments/assets/c356bc6b-95e8-4e1a-ab15-993de8bfb0e7)
+
 
 ```sql
--- Paste your SQL code below for Question 3
+ALTER TABLE Employees
+ADD COLUMN Date_of_joining Date;
+
+ALTER TABLE Employees
+RENAME COLUMN job_title To Designation;
 ```
 
 **Output:**
 
-![Output3](output.png)
+![Screenshot 2025-04-29 140140](https://github.com/user-attachments/assets/540a0cd5-1c58-44a6-b5d1-461c2f1d3061)
 
 **Question 4**
----
--- Paste Question 4 here
+
+![Screenshot 2025-04-29 140203](https://github.com/user-attachments/assets/835d84fe-f0d1-47e9-8237-21adedcb9ef8)
 
 ```sql
--- Paste your SQL code below for Question 4
+ CREATE TABLE jobs (  
+    job_id INTEGER PRIMARY KEY,  
+    job_title TEXT NOT NULL DEFAULT '',  
+    min_salary INTEGER NOT NULL DEFAULT 8000,  
+    max_salary INTEGER DEFAULT NULL  
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+![Screenshot 2025-04-29 140239](https://github.com/user-attachments/assets/5b8aa32d-a4d8-4031-9fbb-8245826c8c15)
 
 **Question 5**
----
--- Paste Question 5 here
+
+![Screenshot 2025-04-29 140257](https://github.com/user-attachments/assets/16ca9945-2244-4155-98c0-e372f37d5549)
+
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE Departments(
+DepartmentID INTEGER,
+DepartmentName TEXT
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+![Screenshot 2025-04-29 140326](https://github.com/user-attachments/assets/029c84ce-53fa-44e5-bb01-265bbb42c218)
 
 **Question 6**
----
--- Paste Question 6 here
+
+![Screenshot 2025-04-29 140343](https://github.com/user-attachments/assets/4dfff7cf-c343-49db-a90e-50b9887375b3)
+
 
 ```sql
--- Paste your SQL code below for Question 6
+select *from Out_of_print_books
+union all
+select *from Books
 ```
 
 **Output:**
 
-![Output6](output.png)
+![Screenshot 2025-04-29 140412](https://github.com/user-attachments/assets/ef84a6de-e751-4f35-9ca6-47f67bb25f98)
 
 **Question 7**
----
--- Paste Question 7 here
+
+![Screenshot 2025-04-29 140429](https://github.com/user-attachments/assets/91973c99-84ed-4c37-b54d-80aa249be42a)
+
 
 ```sql
--- Paste your SQL code below for Question 7
+CREATE TABLE item (  
+    item_id TEXT PRIMARY KEY,  
+    item_desc TEXT NOT NULL,  
+    rate INTEGER NOT NULL,  
+    icom_id TEXT CHECK(4),  
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)  
+    ON UPDATE CASCADE  
+    ON DELETE CASCADE  
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+![Screenshot 2025-04-29 140458](https://github.com/user-attachments/assets/6bd2fef6-e71f-44d2-942f-18d6f69a3c32)
 
 **Question 8**
----
--- Paste Question 8 here
+
+![Screenshot 2025-04-29 140518](https://github.com/user-attachments/assets/64410896-26df-4cd7-8ea8-5b2c3597619a)
+
 
 ```sql
--- Paste your SQL code below for Question 8
+ALTER TABLE employee
+ADD COLUMN designation varchar(50);
 ```
 
 **Output:**
 
-![Output8](output.png)
+![Screenshot 2025-04-29 140542](https://github.com/user-attachments/assets/24b23b95-201e-4b61-9bc7-488b29aaa32f)
 
 **Question 9**
----
--- Paste Question 9 here
+
+![Screenshot 2025-04-29 140600](https://github.com/user-attachments/assets/b0d4226a-12ac-4680-ace3-50a728b10b23)
+
 
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO Products (ProductID, Name, Category)  
+VALUES (104, 'Tablet', 'Electronics');
 ```
 
 **Output:**
 
-![Output9](output.png)
+![Screenshot 2025-04-29 140627](https://github.com/user-attachments/assets/3deaf30b-c9fc-4c55-9e06-1df30e22f006)
 
 **Question 10**
----
--- Paste Question 10 here
+
+![Screenshot 2025-04-29 140646](https://github.com/user-attachments/assets/d9f81474-362b-46a5-8aad-c574d2a73add)
+
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Employees(
+EmployeeID INTEGER primary key,
+FirstName INTEGER NOT NULL,
+LastName INTEGER NOT NULL,
+Email VARCHAR(50) unique,
+Salary CHECK (Salary>0),
+DepartmentID INTEGER,
+foreign key(DepartmentID) references Departments(DepartmentID)
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
+![Screenshot 2025-04-29 140715](https://github.com/user-attachments/assets/09ac0268-5a30-4a0c-813b-c381b28b1dd6)
 
 
 ## RESULT
