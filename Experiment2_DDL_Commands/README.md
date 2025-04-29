@@ -105,158 +105,178 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 
-![438609158-53b5f3b9-c9b6-4e2b-a010-2876d7e71d58](https://github.com/user-attachments/assets/05b644bf-878c-4bbf-83c9-ef1df67c2bf3)
+![438551416-1ff73ec5-f6a1-4e70-9010-161c6f3772f6](https://github.com/user-attachments/assets/c1464946-e338-4482-a37a-9e974707c8d0)
 
 
 ```sql
-INSERT INTO Customers(CustomerID  ,Name, Address, Email)
-SELECT CustomerID ,Name ,Address, Email FROM Old_customers;
+INSERT INTO Employee(EmployeeID,Name,Position)
+values(5,           'George Clark',  'Consultant');
+
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
+values(7,           'Noah Davis',    'Manager',     'HR',          60000);
+
+INSERT INTO Employee(EmployeeID,Name,Position,Department)
+values(8,           'Ava Miller',    'Consultant',  'IT');
 ```
 
 **Output:**
 
-![438610221-8cb31551-6831-454d-b418-edd48d7eb67f](https://github.com/user-attachments/assets/c8ee6f15-b7f5-40ce-9236-86f40d8ae302)
+![Screenshot 2025-04-29 135905](https://github.com/user-attachments/assets/f09cfe13-4c32-4525-88b5-200cc62db38c)
+
 
 **Question 2**
 
-![438613114-1f0eb809-77c1-44ef-afa2-8421dcb11740](https://github.com/user-attachments/assets/747472a4-2847-49c5-b6ef-3ba10a7310d8)
+![Screenshot 2025-04-29 135957](https://github.com/user-attachments/assets/89362ef2-7347-4a99-aa1c-7021ecc12fc0)
 
 
 ```sql
-UPDATE products
-SET product_name = 'Grapefruit'
-WHERE product_id =4;
+CREATE TABLE Attendance (  
+    AttendanceID INTEGER PRIMARY KEY,  
+    EmployeeID INTEGER,  
+    AttendanceDate DATE,  
+    Status TEXT CHECK (Status IN ('Present', 'Absent', 'Leave')),  
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)  
+);
 ```
 
 **Output:**
 
-![438613192-fac16b56-8a39-4f79-85ce-bbb4c7e859c6](https://github.com/user-attachments/assets/4940badd-f9a1-435c-9bf2-6137c5e43fb9)
+![Screenshot 2025-04-29 140044](https://github.com/user-attachments/assets/ea7d306d-ccae-4760-b795-fd6d95471246)
 
 **Question 3**
 
-![438613851-777ae485-23f4-4483-8715-29b910b9a718](https://github.com/user-attachments/assets/fb082927-8207-4d91-8962-ba6532dbe608)
+![Screenshot 2025-04-29 140105](https://github.com/user-attachments/assets/c356bc6b-95e8-4e1a-ab15-993de8bfb0e7)
 
 
 ```sql
-DELETE FROM surgeries
-WHERE  surgery_id =3;
+ALTER TABLE Employees
+ADD COLUMN Date_of_joining Date;
+
+ALTER TABLE Employees
+RENAME COLUMN job_title To Designation;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 141500](https://github.com/user-attachments/assets/a260c5a2-9b1d-4cd3-9d42-2e82fd238f4c)
+![Screenshot 2025-04-29 140140](https://github.com/user-attachments/assets/540a0cd5-1c58-44a6-b5d1-461c2f1d3061)
 
 **Question 4**
 
-![image](https://github.com/user-attachments/assets/ccb5e276-48bf-4ce0-9a4b-9508a80f00c3)
-
+![Screenshot 2025-04-29 140203](https://github.com/user-attachments/assets/835d84fe-f0d1-47e9-8237-21adedcb9ef8)
 
 ```sql
-SELECT customer_id, cust_name, city, grade, salesman_id
-FROM  customer
-WHERE  grade >100;
+ CREATE TABLE jobs (  
+    job_id INTEGER PRIMARY KEY,  
+    job_title TEXT NOT NULL DEFAULT '',  
+    min_salary INTEGER NOT NULL DEFAULT 8000,  
+    max_salary INTEGER DEFAULT NULL  
+);
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/567c7e88-e0db-4571-9eff-6956de9f3567)
+![Screenshot 2025-04-29 140239](https://github.com/user-attachments/assets/5b8aa32d-a4d8-4031-9fbb-8245826c8c15)
 
 **Question 5**
 
-![image](https://github.com/user-attachments/assets/6a008f52-7e8d-4fa5-847f-f126a14fd26c)
+![Screenshot 2025-04-29 140257](https://github.com/user-attachments/assets/16ca9945-2244-4155-98c0-e372f37d5549)
 
 
 ```sql
-SELECT ename,hiredate,DATE(hiredate ,'+100 Days') AS DateAfter100Days
-FROM emp;
+CREATE TABLE Departments(
+DepartmentID INTEGER,
+DepartmentName TEXT
+);
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/e5fea501-acd8-49ab-b033-5cf66ceca032)
+![Screenshot 2025-04-29 140326](https://github.com/user-attachments/assets/029c84ce-53fa-44e5-bb01-265bbb42c218)
 
 **Question 6**
 
-![image](https://github.com/user-attachments/assets/95288ceb-812c-4279-b48e-a7066b2dca77)
+![Screenshot 2025-04-29 140343](https://github.com/user-attachments/assets/4dfff7cf-c343-49db-a90e-50b9887375b3)
 
 
 ```sql
-SELECT id,ROUND(decimal,3) AS  rounded_value
-FROM Calculations;
+select *from Out_of_print_books
+union all
+select *from Books
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/b5d1e8f0-fdf0-40ca-b457-09f0e1d8eb0f)
+![Screenshot 2025-04-29 140412](https://github.com/user-attachments/assets/ef84a6de-e751-4f35-9ca6-47f67bb25f98)
 
 **Question 7**
 
-![image](https://github.com/user-attachments/assets/ed21dfcf-b669-4798-b669-5988eb66daad)
+![Screenshot 2025-04-29 140429](https://github.com/user-attachments/assets/91973c99-84ed-4c37-b54d-80aa249be42a)
 
 
 ```sql
-DELETE FROM Customer
-WHERE LENGTH(CUST_NAME) =6;
+CREATE TABLE item (  
+    item_id TEXT PRIMARY KEY,  
+    item_desc TEXT NOT NULL,  
+    rate INTEGER NOT NULL,  
+    icom_id TEXT CHECK(4),  
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)  
+    ON UPDATE CASCADE  
+    ON DELETE CASCADE  
+);
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/9f20ae12-2d3e-4709-8af7-3ee196c3e9d6)
+![Screenshot 2025-04-29 140458](https://github.com/user-attachments/assets/6bd2fef6-e71f-44d2-942f-18d6f69a3c32)
 
 **Question 8**
 
-![image](https://github.com/user-attachments/assets/93bc0611-3395-4e2e-9b92-18feec5e9be8)
+![Screenshot 2025-04-29 140518](https://github.com/user-attachments/assets/64410896-26df-4cd7-8ea8-5b2c3597619a)
 
 
 ```sql
-UPDATE Employees 
-SET salary = 8000
-WHERE employee_id =105 AND salary < 5000;
+ALTER TABLE employee
+ADD COLUMN designation varchar(50);
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/2bc755f2-fdc9-4e0a-9900-28035de25c02)
+![Screenshot 2025-04-29 140542](https://github.com/user-attachments/assets/24b23b95-201e-4b61-9bc7-488b29aaa32f)
 
 **Question 9**
 
-![image](https://github.com/user-attachments/assets/99207994-013e-4150-9607-50e32297efae)
+![Screenshot 2025-04-29 140600](https://github.com/user-attachments/assets/b0d4226a-12ac-4680-ace3-50a728b10b23)
 
 
 ```sql
-SELECT id, value1, 
-        CASE 
-           WHEN  value1 >50 THEN 'High'
-           ELSE 'Low'
-        END AS  value_category
-FROM Calculations;
-
+INSERT INTO Products (ProductID, Name, Category)  
+VALUES (104, 'Tablet', 'Electronics');
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/1dd14d63-6e2c-4f91-a9c8-891abcc97366)
+![Screenshot 2025-04-29 140627](https://github.com/user-attachments/assets/3deaf30b-c9fc-4c55-9e06-1df30e22f006)
 
 **Question 10**
 
-![image](https://github.com/user-attachments/assets/01b9fc8a-3f69-468d-be57-35afa29395cd)
+![Screenshot 2025-04-29 140646](https://github.com/user-attachments/assets/d9f81474-362b-46a5-8aad-c574d2a73add)
 
 
 ```sql
-SELECT 
-    product_id, 
-    original_price, 
-    discount_percentage,
-    original_price *discount_percentage AS discount_amount
-FROM 
-    products
-WHERE  
-    original_price * discount_percentage >50;
+CREATE TABLE Employees(
+EmployeeID INTEGER primary key,
+FirstName INTEGER NOT NULL,
+LastName INTEGER NOT NULL,
+Email VARCHAR(50) unique,
+Salary CHECK (Salary>0),
+DepartmentID INTEGER,
+foreign key(DepartmentID) references Departments(DepartmentID)
+);
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/59698e25-d6aa-4b62-96de-0aac3253b12b)
+![Screenshot 2025-04-29 140715](https://github.com/user-attachments/assets/09ac0268-5a30-4a0c-813b-c381b28b1dd6)
 
 
 ## RESULT
