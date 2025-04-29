@@ -56,85 +56,85 @@ Hospital
 
 ## Entities and Attributes:
 ### PATIENT
-   P-ID
-   PH-NO
-   AGE
-   GENDER
+   - P-ID
+   - PH-NO
+   - AGE
+   - GENDER
 
 ### DOCTOR
-   DEPT
-   QUALIFICATION
+   - DEPT
+   - QUALIFICATION
 
 ### NURSE
-   N-ID
-   E-ID
+   - N-ID
+   - E-ID
 
 ### RECEPTIONIST (No specific attributes shown)
 
 ### ROOMS
-   R-ID
-   TYPE
-   CAPACITY
+   - R-ID
+   - TYPE
+   - CAPACITY
 
 ### BILLS
-   B-ID
-   P-ID
-   AMOUNT
+   - B-ID
+   - P-ID
+   - AMOUNT
 
 ### TEST REPORT
-   TEST-TYPE
-   P-ID
-   RESULT
+   - TEST-TYPE
+   - P-ID
+   - RESULT
 
 ### RECORDS
-   R-NO
-   APP-NO
+   - R-NO
+   - APP-NO
 
 ## Relationships and Constraints:
 
 ### CONSULTS
 
-   Between: PATIENT and DOCTOR
-   Constraint: Many-to-Many (M:N)
-   A patient can consult multiple doctors, and a doctor can be consulted by multiple patients.
+   - Between: PATIENT and DOCTOR
+   - Constraint: Many-to-Many (M:N)
+   - A patient can consult multiple doctors, and a doctor can be consulted by multiple patients.
 
 ### PAYS
 
-   Between: PATIENT and BILLS
-   Constraint: One-to-Many (1:N)
-   A patient can pay many bills, but each bill is linked to one patient.
+   - Between: PATIENT and BILLS
+   - Constraint: One-to-Many (1:N)
+   - A patient can pay many bills, but each bill is linked to one patient.
 
 ### HAS
 
-   Between: PATIENT and TEST REPORT
-   Constraint: One-to-Many (1:N)
-   A patient can have multiple test reports, but each test report is linked to one patient.
+   - Between: PATIENT and TEST REPORT
+   - Constraint: One-to-Many (1:N)
+   - A patient can have multiple test reports, but each test report is linked to one patient.
 
 ### GOVERNS
 
-   Between: NURSE and ROOM
-   Constraint: Many-to-Many (M:N)
-   A nurse can govern multiple rooms, and a room can be governed by multiple nurses.
+   - Between: NURSE and ROOM
+   - Constraint: Many-to-Many (M:N)
+   - A nurse can govern multiple rooms, and a room can be governed by multiple nurses.
 
 ### MAINTAINS
 
-   Between: RECEPTIONIST and RECORDS
-   Constraint: One-to-Many (1:M)
-   A receptionist maintains multiple records.
+   - Between: RECEPTIONIST and RECORDS
+   - Constraint: One-to-Many (1:M)
+   - A receptionist maintains multiple records.
 
 ## Extension (Billing):
 ### Entities Involved:
 
-   PATIENT, BILLS
+   - PATIENT, BILLS
 
 ### Relationship:
 
-   PAYS (between PATIENT and BILLS)
+   - PAYS (between PATIENT and BILLS)
 
 ### Attributes Used:
 
-   In PATIENT: P-ID
-   In BILLS: B-ID, P-ID, AMOUNT
+   - In PATIENT: P-ID
+   - In BILLS: B-ID, P-ID, AMOUNT
 
 ### Modeling Explanation:
 
@@ -152,39 +152,39 @@ Hospital
 
 ## Design Choices:
 
-PATIENT, DOCTOR, NURSE, RECEPTIONIST
+### PATIENT, DOCTOR, NURSE, RECEPTIONIST
 
-   Chosen as entities because they represent key actors in the hospital system, each with their own attributes and responsibilities.
+  - Chosen as entities because they represent key actors in the hospital system, each with their own attributes and responsibilities.
 
-ROOMS
+### ROOMS
 
-   Modeled as a separate entity to manage space allocation, with attributes like TYPE and CAPACITY.
+   - Modeled as a separate entity to manage space allocation, with attributes like TYPE and CAPACITY.
 
-BILLS, TEST REPORT, RECORDS
+### BILLS, TEST REPORT, RECORDS
 
-   Represent important operational and administrative data, each requiring independent storage and relationships to patients or staff.
+   - Represent important operational and administrative data, each requiring independent storage and relationships to patients or staff.
 
 ### Relationship Choices:
 
-CONSULTS (PATIENT—DOCTOR)
+#### CONSULTS (PATIENT—DOCTOR)
 
-   Many-to-many to reflect real-life scenarios where multiple patients consult multiple doctors.
+   - Many-to-many to reflect real-life scenarios where multiple patients consult multiple doctors.
 
-PAYS (PATIENT—BILLS)
+#### PAYS (PATIENT—BILLS)
 
-   One-to-many, as one patient can pay multiple bills.
+   - One-to-many, as one patient can pay multiple bills.
 
-HAS (PATIENT—TEST REPORT)
+#### HAS (PATIENT—TEST REPORT)
 
-   One-to-many, since a patient may have several test reports.
+   - One-to-many, since a patient may have several test reports.
 
-GOVERNS (NURSE—ROOMS)
+#### GOVERNS (NURSE—ROOMS)
 
-   Many-to-many because nurses may be assigned to multiple rooms and rooms may be overseen by multiple nurses during shifts.
+   - Many-to-many because nurses may be assigned to multiple rooms and rooms may be overseen by multiple nurses during shifts.
 
-MAINTAINS (RECEPTIONIST—RECORDS)
+#### MAINTAINS (RECEPTIONIST—RECORDS)
 
-   One-to-many, as one receptionist maintains several patient records.
+   - One-to-many, as one receptionist maintains several patient records.
 
 ## RESULT
 
