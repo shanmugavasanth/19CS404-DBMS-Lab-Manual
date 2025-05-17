@@ -80,7 +80,9 @@ END;
 ```
 
 **Output:**
+
 ![image](https://github.com/user-attachments/assets/b3cf8c94-fe63-47db-b227-c0b8db64d7ea)
+
 
 **Expected Output:**  
 Square of 6 is 36
